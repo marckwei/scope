@@ -1,0 +1,119 @@
+# =================================================================
+# 开源赏金项目 - 按赏金源分类 (By Bounty Source)
+# =================================================================
+
+# === 1. Google Open Source VRP ===
+# 政策: https://bughunters.google.com/
+https://github.com/chromium/chromium
+https://github.com/golang/go
+https://github.com/angular/angular
+https://github.com/flutter/flutter
+https://github.com/dart-lang/sdk
+https://github.com/tensorflow/tensorflow
+https://github.com/jax-ml/jax
+https://github.com/google/tink
+https://github.com/bazelbuild/bazel
+https://github.com/protocolbuffers/protobuf
+https://github.com/grpc/grpc
+https://github.com/google/guava
+
+# === 2. Internet Bug Bounty (IBB) ===
+# 政策: https://hackerone.com/ibb
+https://github.com/curl/curl
+https://github.com/openssl/openssl
+https://github.com/python/cpython
+https://github.com/ruby/ruby
+https://github.com/php/php-src
+https://github.com/nodejs/node
+https://github.com/rust-lang/rust
+https://github.com/rails/rails
+https://github.com/django/django
+https://github.com/apache/httpd
+https://github.com/apache/tomcat
+https://github.com/apache/airflow
+https://github.com/nginx/nginx
+https://github.com/electron/electron
+https://github.com/rack/rack
+https://github.com/libuv/libuv
+https://github.com/argoproj/argoproj
+https://github.com/spiffe/spiffe
+https://github.com/spiffe/spire
+https://git.libssh.org/
+https://github.com/ntp-project/ntp
+https://github.com/madler/zlib
+
+# === 3. Microsoft MSRC (GitHub/Azure/OSS) ===
+# 政策: https://www.microsoft.com/en-us/msrc/bounty-programs
+https://github.com/microsoft/vscode
+https://github.com/microsoft/TypeScript
+https://github.com/microsoft/playwright
+https://github.com/PowerShell/PowerShell
+https://github.com/dotnet/runtime
+https://github.com/dotnet/aspnetcore
+
+# === 4. Meta (Facebook) Whitehat ===
+# 政策: https://www.facebook.com/whitehat
+https://github.com/facebook/react
+https://github.com/facebook/react-native
+https://github.com/pytorch/pytorch
+https://github.com/facebook/folly
+https://github.com/facebook/rocksdb
+https://github.com/prestodb/presto
+
+# === 5. Vercel & Modern Web Stack ===
+# 政策: https://hackerone.com/vercel
+https://github.com/vercel/next.js
+https://github.com/vercel/turborepo
+https://github.com/vercel/swr
+https://github.com/vercel/ai
+https://github.com/supabase/supabase
+https://github.com/clerk/clerk-sdk-node
+
+# === 6. Huntr.dev & AI Infrastructure ===
+# 政策: https://huntr.com/ (专门针对 AI/ML 的开源赏金平台)
+https://github.com/langchain-ai/langchain
+https://github.com/huggingface/transformers
+https://github.com/ray-project/ray
+https://github.com/ollama/ollama
+https://github.com/Significant-Gravitas/AutoGPT
+https://github.com/milvus-io/milvus
+https://github.com/qdrant/qdrant
+https://github.com/mintplex-labs/anything-llm
+https://github.com/FlowiseAI/Flowise
+https://github.com/lancedb/lancedb
+https://github.com/mudler/LocalAI
+https://github.com/open-webui/open-webui
+https://github.com/comfyanonymous/ComfyUI
+https://github.com/AUTOMATIC1111/stable-diffusion-webui
+
+# === 7. Web3 & Blockchain Foundations ===
+https://github.com/ethereum/go-ethereum
+https://github.com/bitcoin/bitcoin
+https://github.com/solana-labs/solana
+https://github.com/cosmos/cosmos-sdk
+https://github.com/polkadot-fellows/polkadot-sdk
+https://github.com/near/nearcore
+https://github.com/aptos-labs/aptos-core
+https://github.com/ethereum-optimism/optimism
+
+# === 8. Other Major Programs (Amazon, Mozilla, etc.) ===
+https://github.com/aws/aws-sdk-go
+https://github.com/firecracker-microvm/firecracker
+https://github.com/mozilla/gecko-dev
+https://github.com/WebKit/WebKit
+https://github.com/kubernetes/kubernetes
+https://github.com/docker/docker-ce
+https://github.com/envoyproxy/envoy
+https://github.com/istio/istio
+https://github.com/qemu/qemu
+https://github.com/xen-project/xen
+
+# === 9. Corporate OSS (Elastic, Grafana, etc.) ===
+https://github.com/elastic/elasticsearch
+https://github.com/elastic/kibana
+https://github.com/grafana/grafana
+https://github.com/postgres/postgres
+https://github.com/redis/redis
+https://github.com/mariadb/server
+https://github.com/hoppscotch/hoppscotch
+https://github.com/nocodb/nocodb

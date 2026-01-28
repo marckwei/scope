@@ -1,0 +1,6 @@
+# 上游数据目录 (由 CI 自动克隆)
+data/
+
+# Python
+__pycache__/
+*.py[cod]
