@@ -300,13 +300,20 @@ def generate_inventory_csv(all_results, manual_repos):
 
     # 1. 处理来自平台的项目
     for item in all_results:
-        platform = item.get('platform', 'Unknown')
-        source = item.get('program', 'Unknown')
+        platform_raw = item.get('platform', 'Unknown')
+        program_raw = item.get('program', 'Unknown')
+        
+        # 如果是四大主流赏金平台，直接用平台名
+        if platform_raw in ["HackerOne", "Bugcrowd", "YesWeHack", "Intigriti"]:
+            platform = platform_raw
+        else:
+            # 否则使用具体项目源
+            platform = program_raw
+            
         for repo in item['repos']:
             if repo not in seen_repos:
                 data.append({
                     'repo': repo,
-                    'source': source,
                     'platform': platform,
                     'owner': '',
                     'status': 'New',
@@ -317,22 +324,27 @@ def generate_inventory_csv(all_results, manual_repos):
     # 2. 处理手动补充的项目
     manual_file = Path(__file__).parent / 'manual_additions.txt'
     if manual_file.exists():
-        current_source = "Manual"
         platform = "Manual Addition"
         for line in manual_file.read_text().split('\n'):
             line = line.strip()
             if line.startswith('# ==='):
-                current_source = line.replace('# ===', '').replace('===', '').strip()
-                if "IBB" in current_source: platform = "IBB"
-                elif "Google" in current_source: platform = "Google"
-                elif "Huntr" in current_source: platform = "Huntr"
-                elif "Vercel" in current_source: platform = "HackerOne"
+                section = line.replace('# ===', '').replace('===', '').strip()
+                # 针对手动补充部分的逻辑映射
+                if "Google" in section: platform = "Google Open Source VRP"
+                elif "IBB" in section or "Internet Bug Bounty" in section: platform = "HackerOne"
+                elif "Microsoft" in section: platform = "Microsoft MSRC"
+                elif "Meta" in section or "Facebook" in section: platform = "Meta Whitehat"
+                elif "Vercel" in section: platform = "HackerOne"
+                elif "Huntr" in section: platform = "Huntr"
+                elif "Web3" in section: platform = "Web3 & Blockchain Foundations"
+                else: platform = section
             elif line.startswith('http') and not line.startswith('#'):
-                repo = line
+                normalized_list = normalize_repo_url(line)
+                if not normalized_list: continue
+                repo = normalized_list[0]
                 if repo not in seen_repos:
                     data.append({
                         'repo': repo,
-                        'source': current_source,
                         'platform': platform,
                         'owner': '',
                         'status': 'New',
@@ -341,7 +353,7 @@ def generate_inventory_csv(all_results, manual_repos):
                     seen_repos.add(repo)
 
     with open(inventory_file, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=['repo', 'source', 'platform', 'owner', 'status', 'notes'])
+        writer = csv.DictWriter(f, fieldnames=['repo', 'platform', 'owner', 'status', 'notes'])
         writer.writeheader()
         writer.writerows(data)
     print(f"[+] 完整 CSV 管理表格已更新: {inventory_file}")
