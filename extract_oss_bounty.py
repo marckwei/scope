@@ -289,6 +289,62 @@ def main():
     print(f"[+] 去重仓库列表已保存到: {repos_only_file}")
     print(f"[+] 共 {len(all_repos)} 个唯一仓库 URL")
 
+    # --- 自动生成 CSV 管理表格 ---
+    generate_inventory_csv(all_results, manual_repos)
+
+def generate_inventory_csv(all_results, manual_repos):
+    import csv
+    inventory_file = Path(__file__).parent / 'bounty_inventory.csv'
+    data = []
+    seen_repos = set()
+
+    # 1. 处理来自平台的项目
+    for item in all_results:
+        platform = item.get('platform', 'Unknown')
+        source = item.get('program', 'Unknown')
+        for repo in item['repos']:
+            if repo not in seen_repos:
+                data.append({
+                    'repo': repo,
+                    'source': source,
+                    'platform': platform,
+                    'owner': '',
+                    'status': 'New',
+                    'notes': ''
+                })
+                seen_repos.add(repo)
+
+    # 2. 处理手动补充的项目
+    manual_file = Path(__file__).parent / 'manual_additions.txt'
+    if manual_file.exists():
+        current_source = "Manual"
+        platform = "Manual Addition"
+        for line in manual_file.read_text().split('\n'):
+            line = line.strip()
+            if line.startswith('# ==='):
+                current_source = line.replace('# ===', '').replace('===', '').strip()
+                if "IBB" in current_source: platform = "IBB"
+                elif "Google" in current_source: platform = "Google"
+                elif "Huntr" in current_source: platform = "Huntr"
+                elif "Vercel" in current_source: platform = "HackerOne"
+            elif line.startswith('http') and not line.startswith('#'):
+                repo = line
+                if repo not in seen_repos:
+                    data.append({
+                        'repo': repo,
+                        'source': current_source,
+                        'platform': platform,
+                        'owner': '',
+                        'status': 'New',
+                        'notes': ''
+                    })
+                    seen_repos.add(repo)
+
+    with open(inventory_file, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=['repo', 'source', 'platform', 'owner', 'status', 'notes'])
+        writer.writeheader()
+        writer.writerows(data)
+    print(f"[+] 完整 CSV 管理表格已更新: {inventory_file}")
 
 if __name__ == '__main__':
     main()

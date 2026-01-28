@@ -35,6 +35,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add oss_*.txt
-          git diff --staged --quiet || git commit -m "chore: sync upstream bounty data [$(date -u +%Y-%m-%d)]"
+          git add oss_*.txt bounty_inventory.csv
+          git diff --staged --quiet || git commit -m "chore: sync upstream bounty data and update inventory [$(date -u +%Y-%m-%d)]"
           git push
